@@ -1,7 +1,8 @@
 
 # Created by https://www.gitignore.io/api/git,node,intellij+all
 # Edit at https://www.gitignore.io/?templates=git,node,intellij+all
-
+../assets/**
+/data/**
 ### Git ###
 # Created by git for backups. To disable backups in Git:
 # $ git config --global mergetool.keepBackup false
