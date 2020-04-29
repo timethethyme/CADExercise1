@@ -9,10 +9,12 @@
         <a href="/upload">Upload</a>
     </div>
     <div class="view-container">
-        <% let uploads = [{name: 'test', path: 'images/87299695-thyme-herb.jpg'}, {name: 'test', path: 'images/87299695-thyme-herb.jpg'}];%>
+        <!-- Test case only
+        # let uploads = [{name: 'test', path: 'images/87299695-thyme-herb.jpg'}, {name: 'test', path: 'images/87299695-thyme-herb.jpg'}];
+        -->
         <% uploads.forEach( (upload) => {%>
         <div>
-            <img src="<%= upload.path%>" height="200px" width="200px">
+            <img src="<%= 'images/' + upload.path%>" height="200px" width="200px">
             <p><%= upload.name%></p>
         </div>
         <%})%>

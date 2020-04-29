@@ -31,7 +31,6 @@ function show() {
         assert.equal(err, null);
         console.log("Found the following records");
         console.log(docs)
-        callback(docs);
     });
 }
 
@@ -51,8 +50,21 @@ app.use(express.static(view_path))
 const image_path = path.join(__dirname, '/..', '/assets')
 app.use('/images',  express.static(image_path))
 
-app.get('/', (req, res) => res.render('index'))
+const multer = require('multer');
+let upload = multer({dest: image_path})
+
+app.get('/', (req, res) => {
+    collection.find({}).toArray(function(err, docs) {
+        console.log("Docs send to view");
+        console.log(docs)
+        res.render('index', {uploads: docs})
+    });
+})
 app.get('/upload', (req, res) => res.render('upload'))
+app.post('/upload', upload.single('uploaded_file'), function (req, res) {
+    insert({'name': req.body.name,'path': req.file.filename})
+    res.render('upload')
+});
 
 const port = 3000;
 app.listen(port, () => console.log('View server is running!'))
