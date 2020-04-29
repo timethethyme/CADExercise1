@@ -19,7 +19,6 @@ client.connect(function(err) {
     collection = db.collection('documents');
 });
 
-/*
 function insert(data) {
     collection.insertOne(data, function(err, res) {
         if (err) throw err;
@@ -36,15 +35,48 @@ function show() {
     });
 }
 
-var http = require('http');
-http.createServer(function (req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Hello World\n');
-}).listen(1337, "127.0.0.1");
-console.log('Server running at http://127.0.0.1:1337/');
+const https = require('https')
 
+const getoptions = {
+    hostname: '127.0.0.1m',
+    port: 443,
+    path: '/get',
+    method: 'GET'
+}
 
-var myobj = { name: "Test" };
+const getreq = https.request(getoptions, res => {
+    console.log(`statusCode: ${res.statusCode}`)
 
-insert(myobj);
- */
+    res.on('data', d => {
+        process.stdout.write(d)
+        show()
+    })
+})
+
+getreq.on('error', error => {
+    console.error(error)
+})
+
+getreq.end()
+
+const postoptions = {
+    hostname: '127.0.0.1m',
+    port: 443,
+    path: '/post',
+    method: 'POST'
+}
+
+const postreq = https.request(postoptions, res => {
+    console.log(`statusCode: ${res.statusCode}`)
+
+    res.on('data', d => {
+        process.stdout.write(d)
+        insert()
+    })
+})
+
+postreq.on('error', error => {
+    console.error(error)
+})
+
+postreq.end()
