@@ -38,7 +38,7 @@ function show() {
 const https = require('https')
 
 const getoptions = {
-    hostname: '127.0.0.1m',
+    hostname: '127.0.0.1',
     port: 443,
     path: '/get',
     method: 'GET'
@@ -60,7 +60,7 @@ getreq.on('error', error => {
 getreq.end()
 
 const postoptions = {
-    hostname: '127.0.0.1m',
+    hostname: '127.0.0.1',
     port: 443,
     path: '/post',
     method: 'POST'
