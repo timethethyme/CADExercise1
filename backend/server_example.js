@@ -1,3 +1,4 @@
+/*
 const express = require('express');
 const ejs = require('ejs')
 const path = require('path')
@@ -20,3 +21,4 @@ app.get('/upload', (req, res) => res.render('upload'))
 
 const port = 3000;
 app.listen(port, () => console.log('Running'))
+*/

@@ -13,7 +13,7 @@ var collection;
 client.connect(function(err) {
     assert.equal(null, err);
 
-    console.log("Connected successfully to server");
+    console.log("Connected successfully to mongo server!");
 
     db = client.db(dbName);
     collection = db.collection('documents');
@@ -55,7 +55,7 @@ app.get('/', (req, res) => res.render('index'))
 app.get('/upload', (req, res) => res.render('upload'))
 
 const port = 3000;
-app.listen(port, () => console.log('Running'))
+app.listen(port, () => console.log('View server is running!'))
 
 /*
 var http = require('http');
