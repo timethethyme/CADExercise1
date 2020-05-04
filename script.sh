@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # installing nodejs on ubuntu
@@ -26,14 +25,15 @@ cd CADExercise1/backend/
 #ngrok for exposing localhost
 sudo npm install --unsafe-perm -g ngrok
 
-#===============================
-#=========REPLACE HERE==========
-#===============================
-ngrok authtoken XXXX
+#==============================================================
+#=========REPLACE HERE (even though no longer needed)==========
+#==============================================================
+ngrok authtoken XYZ
 
 # for starting the db
 mkdir -p ./data
 mongod --port 27017 --dbpath ./data &
 sleep 6s
 nodemon server.js &
+sleep 6s
 ngrok http -region=eu 3000
