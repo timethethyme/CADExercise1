@@ -1,0 +1,45 @@
+#steps to configure the proxy
+
+
+#install hproxy 1.8 (lts)
+sudo add-apt-repository ppa:vbernat/haproxy-1.8 -y
+sudo apt-get update
+sudo apt-get install haproxy -y
+
+
+#before setting a config, there are 2 algorithms that i tried:
+#		balance roundrobin	
+#		balance leastconn
+#
+#roundrobin is the good/ standard one, and the other is a little bit more reduced but it
+#forwards based on the number of previous connections, thus making it better for developing
+
+
+sudo nano /etc/haproxy/haproxy.cfg 
+#aaaaand copy this at the end: 
+
+frontend localnodes
+    bind *:80
+    mode http
+    default_backend nodes
+	
+backend nodes
+    mode http
+    balance leastconn	
+    option forwardfor
+    http-request set-header X-Forwarded-Port %[dst_port] 
+    server web1 xxx.xxx.xxx.xxx:3000 #ip of webserver1
+    server web2 xxx.xxx.xxx.xxx:3000 #ip of webserver2
+
+
+listen stats
+  bind *:9000
+  mode http
+  stats enable
+  stats uri / 
+  stats auth admin:admin  
+
+#check if the config file is valid
+haproxy -c -f /etc/haproxy/haproxy.cfg
+#restart the service
+sudo service haproxy restart
