@@ -14,8 +14,8 @@
         -->
         <% uploads.forEach( (upload) => {%>
         <div>
-            <img src="<%= 'images/' + upload.path%>" height="200px" width="200px">
-            <p><%= upload.name%></p>
+            <img src="<%= upload.PICTURE_PATH%>" height="200px" width="200px">
+            <p><%= upload.PICTURE_NAME%></p>
         </div>
         <%})%>
     </div>
