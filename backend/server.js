@@ -6,6 +6,10 @@ const path = require('path')
 const app = express();
 
 app.set('view engine', 'ejs')
+//Set path for frontend views
+const view_path = path.join(__dirname, '/..', '/frontend')
+app.set('views', view_path)
+app.use(express.static(view_path))
 
 const aws = require('aws-sdk')
 const multer = require('multer');
