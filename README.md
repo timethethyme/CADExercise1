@@ -19,8 +19,9 @@ Suggested Template engine: https://ejs.co/#install
 Suggested Server Framework: https://expressjs.com/
 
 
-
 # Instance from scratch in bwCloud
+
+**NOTE: AWS access key ID AND Secret access key have to be added to server.js**
 
 1. Select Ubuntu 18.04 as image
 2. Stablish SSH conection and login with **ubuntu**
@@ -31,6 +32,7 @@ Suggested Server Framework: https://expressjs.com/
 ```
 	pscp C:\path\to\script.sh ubuntu@IPofVirtualMAchine:/home/ubuntu/script.sh
 ````
+
 5. In the virtual machine, use this for fixing character encoding between Windows and Linux
 ```
 	sed -i -e 's/\r$//' script.sh
